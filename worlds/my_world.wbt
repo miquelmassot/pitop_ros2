@@ -1,0 +1,125 @@
+#VRML_SIM R2023a utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2022b/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2022b/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2022b/projects/objects/floors/protos/CircleArena.proto"
+
+WorldInfo {
+}
+Viewpoint {
+  orientation -0.5773502691896258 0.5773502691896258 0.5773502691896258 2.0944
+  position 8.84932370264627e-06 8.849348726131162e-06 8.283885293934311
+  follow "pitop"
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+CircleArena {
+  radius 2
+  floorTileSize 1 1
+  wallHeight 0.3
+}
+Robot {
+  children [
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        axis 0 1 0
+        anchor 0 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "left wheel motor"
+        }
+      ]
+      endPoint Solid {
+        translation 0 0.045 0.025
+        rotation 0 1 0 0
+        children [
+          DEF WHEEL Transform {
+            rotation 1 0 0 1.5707996938995747
+            children [
+              Shape {
+                appearance PBRAppearance {
+                  baseColor 1 0 0
+                  roughness 1
+                  metalness 0
+                }
+                geometry Cylinder {
+                  height 0.01
+                  radius 0.025
+                }
+              }
+            ]
+          }
+        ]
+        name "left wheel"
+        boundingObject USE WHEEL
+        physics Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        axis 0 1 0
+        anchor 0 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "right wheel motor"
+        }
+      ]
+      endPoint Solid {
+        translation 0 -0.045 0.025
+        rotation 0 1 0 0
+        children [
+          USE WHEEL
+        ]
+        name "right wheel"
+        boundingObject USE WHEEL
+        physics Physics {
+        }
+      }
+    }
+    Transform {
+      translation 0 0 0.0415
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 1
+            roughness 1
+            metalness 0
+          }
+          geometry DEF BODY Cylinder {
+            height 0.08
+            radius 0.045
+          }
+        }
+      ]
+    }
+    Lidar {
+      translation 0.05 0 0.063
+      rotation 0 1 0 1.01503e-06
+      horizontalResolution 180
+      fieldOfView 3.14
+      verticalFieldOfView 0.012271875
+      numberOfLayers 1
+      minRange 0.1
+      maxRange 5
+      noise 0.001
+      resolution 0.05
+      defaultFrequency 4.5
+      maxFrequency 10
+    }
+  ]
+  name "pitop"
+  boundingObject Transform {
+    translation 0 0 0.0415
+    children [
+      USE BODY
+    ]
+  }
+  physics Physics {
+  }
+  controller "<extern>"
+}

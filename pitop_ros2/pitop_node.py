@@ -18,6 +18,12 @@ class PitopNode(Node):
         self.wheel_separation = 0.163
         self.wheel_diameter = 0.065
 
+        self.declare_parameter("wheel_separation", self.wheel_separation)
+        self.declare_parameter("wheel_diameter", self.wheel_diameter)
+
+        self.wheel_separation = self.get_parameter("wheel_separation").value
+        self.wheel_diameter = self.get_parameter("wheel_diameter").value
+
         # Create twist subscriber
         self.twist_sub = self.create_subscription(
             Twist, "cmd_vel", self.twist_callback, 10
