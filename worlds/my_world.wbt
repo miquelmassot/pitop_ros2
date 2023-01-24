@@ -2,23 +2,21 @@
 
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2022b/projects/objects/backgrounds/protos/TexturedBackground.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2022b/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
-EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2022b/projects/objects/floors/protos/CircleArena.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/floors/protos/RectangleArena.proto"
 
 WorldInfo {
 }
 Viewpoint {
-  orientation -0.33291281582935894 0.25125236045816635 0.9088681468842259 1.9206965031088712
-  position 0.12971813986717304 -0.6036731360722779 0.5498524192484772
+  orientation -0.43413388957968724 0.21170706812393966 0.8756185717678546 2.3203641755987703
+  position 0.5106663469646817 -0.7565487260329132 1.2045471924557796
   follow "pitop"
 }
 TexturedBackground {
 }
 TexturedBackgroundLight {
 }
-CircleArena {
-  radius 2
-  floorTileSize 1 1
-  wallHeight 0.3
+RectangleArena {
+  floorSize 3 3
 }
 Robot {
   children [
