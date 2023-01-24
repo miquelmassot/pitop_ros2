@@ -74,6 +74,11 @@ class Pitop:
 
         return speed_left, speed_right
 
+    def robot_move_rpm(self, rpm_left, rpm_right):
+        self.left_motor.set_target_speed(target_speed=rpm_left)
+        self.right_motor.set_target_speed(target_speed=rpm_right)
+        self._start_synchronous_motor_movement()
+
     def robot_move(self, linear_speed, angular_speed, turn_radius=0.0):
         # TODO: turn_radius will introduce a hidden linear speed component to the robot, so params are syntactically
         #  misleading

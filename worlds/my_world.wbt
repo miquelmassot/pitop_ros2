@@ -7,8 +7,8 @@ EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2022b/project
 WorldInfo {
 }
 Viewpoint {
-  orientation -0.5773502691896258 0.5773502691896258 0.5773502691896258 2.0944
-  position 8.84932370264627e-06 8.849348726131162e-06 8.283885293934311
+  orientation -0.33291281582935894 0.25125236045816635 0.9088681468842259 1.9206965031088712
+  position 0.12971813986717304 -0.6036731360722779 0.5498524192484772
   follow "pitop"
 }
 TexturedBackground {
@@ -22,6 +22,16 @@ CircleArena {
 }
 Robot {
   children [
+    Gyro {
+    }
+    Accelerometer {
+    }
+    Compass {
+      translation 0 0 0.083
+    }
+    GPS {
+      translation 0 0 0.082
+    }
     HingeJoint {
       jointParameters HingeJointParameters {
         axis 0 1 0
@@ -30,6 +40,7 @@ Robot {
       device [
         RotationalMotor {
           name "left wheel motor"
+          sound ""
         }
       ]
       endPoint Solid {
