@@ -15,5 +15,19 @@ def generate_launch_description():
                 'wheel_diameter': 0.065,
                 'timer_period': 0.01,
             }],
+        ),
+        Node(
+            name='lidar',
+            package='rplidar_ros',
+            executable='rplidar_composition',
+            output='screen',
+            emulate_tty=True,
+            parameters=[{
+                'serial_port': '/dev/ttyUSB0',
+                'serial_baudrate': 115200,  # A1
+                'frame_id': 'lidar',
+                'inverted': False,
+                'angle_compensate': True,
+            }],
         )
     ])
