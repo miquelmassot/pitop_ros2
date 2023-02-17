@@ -1,0 +1,35 @@
+version: "3"
+
+services:
+  pi-top:
+    container_name: pi-top
+    build:
+      context: .
+      dockerfile: Dockerfile
+    # Share the X11 socket with the container
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+    devices:
+      # Share the lidar USB device with the container
+      - /dev/ttyUSB0:/dev/ttyUSB0
+    # Use the host network
+    network_mode: host
+    # Run the container as privileged
+    privileged: true
+    # Run the container in interactive mode
+    stdin_open: true
+    tty: true
+    # Run the container as the current user
+    user: ${UID}:${GID}
+    # Set the environment variables
+    environment:
+      - DISPLAY=${DISPLAY}
+      - QT_X11_NO_MITSHM=1
+      - QT_GRAPHICSSYSTEM=native
+      - QT_QPA_PLATFORM=xcb
+      - QT_XCB_GL_INTEGRATION=xcb_egl
+      - QT_XCB_FORCE_SOFTWARE_OPENGL=1
+      - QT_XCB_FORCE_SOFTWARE_RASTERIZER=1
+      - QT_OPENGL=software
+      - QT_XCB_FORCE_SOFTWARE_OPENGL=1
+      - QT_XCB_F

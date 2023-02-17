@@ -1,6 +1,0 @@
-<?xml version="1.0" ?>
-<robot name="PiTop Robot">
-    <webots>
-        <plugin type="pitop_ros2.simulation_node.PiTopSimulationNode" />
-    </webots>
-</robot>
