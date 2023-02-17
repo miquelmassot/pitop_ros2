@@ -44,7 +44,7 @@ RUN colcon mixin add default \
     colcon metadata update
 
 RUN mkdir -p /ros2_ws/src/pitop_ros2 \
-    && git clone https://github.com/allenh1/rplidar_ros.git /ros2_ws/src/rplidar_ros
+    && git clone https://github.com/babakhani/rplidar_ros2.git /ros2_ws/src/rplidar_ros
 
 WORKDIR /ros2_ws
 COPY . /ros2_ws/src/pitop_ros2
