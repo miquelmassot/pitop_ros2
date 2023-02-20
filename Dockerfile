@@ -1,4 +1,5 @@
 FROM ubuntu:jammy
+MAINTAINER Miquel Massot miquel.massot-campos@soton.ac.uk
 
 # setup environment
 ENV LANG C.UTF-8
@@ -10,18 +11,21 @@ RUN echo 'Etc/UTC' > /etc/timezone && \
     ln -s /usr/share/zoneinfo/Etc/UTC /etc/localtime && \
     apt-get update && \
     apt-get install -q -y --no-install-recommends \
+    curl \
+    gnupg2 \
+    lsb-release \
     tzdata \
     dirmngr \
     gnupg2 \
     build-essential \
     git \
     && rm -rf /var/lib/apt/lists/*
+    
+RUN curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg
+RUN echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(. /etc/os-release && echo $UBUNTU_CODENAME) main" | sudo tee /etc/apt/sources.list.d/ros2.list > /dev/null
 
-# setup sources.list
-RUN echo "deb http://packages.ros.org/ros2/ubuntu jammy main" > /etc/apt/sources.list.d/ros2-latest.list \
-    && apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654 \
-    # install packages
-    && apt-get update && apt-get install -q -y --no-install-recommends \
+# install packages
+RUN apt-get update && apt-get install -q -y --no-install-recommends \
     python3-colcon-common-extensions \
     python3-colcon-mixin \
     python3-rosdep \
