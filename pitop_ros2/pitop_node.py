@@ -5,8 +5,8 @@ from rclpy.node import Node
 from sensor_msgs.msg import Imu
 from std_msgs.msg import Float64
 
-from .get_quaternion_from_euler import get_quaternion_from_euler
-from .pitop import Pitop
+from pitop_ros2.get_quaternion_from_euler import get_quaternion_from_euler
+from pitop_ros2.pitop_driver import Pitop
 
 
 class PitopNode(Node):
