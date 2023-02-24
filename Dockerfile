@@ -39,7 +39,9 @@ RUN apt-get update && apt-get install -q -y --no-install-recommends \
     && pip install --no-cache-dir setuptools==58.2.0
 
 # get pi-top SDK libs
-RUN pip3 install pitop --extra-index-url=https://packagecloud.io/pi-top/pypi/pypi/simple
+RUN apt-get update && apt-get install libsystemd-journal
+RUN git clone https://github.com/pi-top/pi-top-Python-SDK.git /opt/pi-top-SDK
+RUN cd /opt/pi-top-SDK && bash dev-install.sh
 
 # bootstrap rosdep
 RUN rosdep init && \
